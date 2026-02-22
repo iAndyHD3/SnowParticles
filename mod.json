@@ -1,15 +1,15 @@
 {
-	"geode": "4.0.1",
+	"geode": "5.0.0-beta.4",
 	"gd": {
-		"win": "2.2074",
-		"android": "2.2074",
-		"mac": "2.2074",
-		"ios": "2.2074"
+		"win": "2.2081",
+		"android": "2.2081",
+		"mac": "2.2081",
+		"ios": "2.2081"
 	},
 	"early-load": true,
 	"id": "iandyhd3.snow_particles",
 	"name": "Snow Particles",
-	"version": "v1.0.0",
+	"version": "v2.0.0",
 	"developer": "iAndyHD3",
 	"description": "",
 	"settings": {
@@ -24,8 +24,7 @@
 			"name": "Playlayer",
 			"description": "show snow particles in playlayer aswell"
 		},
-		"particle-count":
-		{
+		"particle-count": {
 			"type": "int",
 			"max": 3000,
 			"min": 250,
