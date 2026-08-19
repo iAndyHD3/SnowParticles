@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Snow Particles — a Geode mod for Geometry Dash</title>
+<meta name="description" content="Snow Particles is a Geode mod that makes it snow all over Geometry Dash. Persistent across layers, optional in-level snow, and an adjustable particle count." />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Snow Particles — a Geode mod for Geometry Dash" />
+<meta property="og:description" content="It snows all over the game. A tiny Geode mod by iAndyHD3." />
+<meta property="og:image" content="assets/logo.png" />
+<meta name="theme-color" content="#8f1d22" />
+
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<canvas id="snow" aria-hidden="true"></canvas>
+
+<header class="nav">
+  <a class="nav__brand" href="#top">
+    <img src="assets/logo.png" alt="" width="34" height="34" />
+    <span>Snow Particles</span>
+  </a>
+  <nav class="nav__links">
+    <a href="#install">Install</a>
+    <a href="#settings">Settings</a>
+    <a href="#playground">Playground</a>
+    <a href="#changelog">Changelog</a>
+    <a class="nav__cta" href="https://github.com/iAndyHD3/SnowParticles" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ───────────────────────── hero ───────────────────────── -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <span class="pill">
+          <span class="pill__dot"></span>
+          Geode mod &nbsp;·&nbsp; GD 2.2081
+        </span>
+        <h1>It snows<br /><em>all over</em> the game.</h1>
+        <p class="lede">
+          A tiny Geode mod that drops a soft snowfall over Geometry Dash. It follows you
+          between layers, stays out of the way while you're playing, and lets you crank the
+          particle count all the way to a whiteout.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#install">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 18v1.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V18"/></svg>
+            Get the mod
+          </a>
+          <a class="btn btn--ghost" href="https://github.com/iAndyHD3/SnowParticles" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="none"><path d="M12 .5C5.73.5.9 5.33.9 11.6c0 4.9 3.17 9.05 7.57 10.52.55.1.76-.24.76-.53l-.02-1.86c-3.08.67-3.73-1.49-3.73-1.49-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.11.08 1.7 1.14 1.7 1.14.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.7-1.49-2.46-.28-5.05-1.23-5.05-5.48 0-1.21.43-2.2 1.14-2.98-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.14a10.5 10.5 0 0 1 5.56 0c2.12-1.44 3.05-1.14 3.05-1.14.6 1.53.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.26-2.6 5.19-5.07 5.47.4.35.76 1.03.76 2.08l-.01 3.08c0 .3.2.64.77.53a11.11 11.11 0 0 0 7.56-10.52C23.1 5.33 18.27.5 12 .5z"/></svg>
+            Source code
+          </a>
+        </div>
+        <ul class="hero__facts">
+          <li><strong>v2.0.0</strong><span>Latest release</span></li>
+          <li><strong>4</strong><span>Platforms</span></li>
+          <li><strong>250–3000</strong><span>Particles</span></li>
+        </ul>
+      </div>
+
+      <div class="hero__art">
+        <div class="orb"></div>
+        <img class="hero__logo" src="assets/logo.png" alt="Snow Particles mod logo — a white snowflake on a deep red tile" />
+      </div>
+    </div>
+
+    <div class="platforms">
+      <span class="platforms__label">Runs on</span>
+      <span class="chip">Windows</span>
+      <span class="chip">macOS</span>
+      <span class="chip">Android</span>
+      <span class="chip">iOS</span>
+      <span class="chip chip--muted">Geode 5.0.0</span>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── features ───────────────────────── -->
+  <section class="section" id="features">
+    <div class="section__head">
+      <h2>What it does</h2>
+      <p>Three settings, no menus to learn. Toggle it, tune it, forget about it.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </div>
+        <h3>Persistent across layers</h3>
+        <p>
+          The snowfall is parented to Geode's overlay manager, so it's created once and
+          keeps falling as you move between the menu, level select and everything in
+          between — no flicker on every scene change.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg>
+        </div>
+        <h3>Optional in-level snow</h3>
+        <p>
+          By default the snow politely hides itself when a level starts and returns the
+          moment you quit. Turn on <code>Playlayer</code> if you'd rather keep the
+          blizzard going while you're attempting.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>
+        </div>
+        <h3>Adjustable density</h3>
+        <p>
+          Pick anything from a gentle 250-flake drift to a 3000-particle whiteout. The
+          default of 700 is tuned to look good without touching your framerate.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── install ───────────────────────── -->
+  <section class="section" id="install">
+    <div class="section__head">
+      <h2>Install it</h2>
+      <p>The easy way takes about ten seconds. The other way is for people who like compilers.</p>
+    </div>
+
+    <div class="install">
+      <div class="panel panel--accent">
+        <span class="panel__tag">Recommended</span>
+        <h3>From the Geode index</h3>
+        <ol class="steps">
+          <li>Install <a href="https://geode-sdk.org/install/" target="_blank" rel="noopener">Geode</a> for Geometry Dash 2.2 if you haven't already.</li>
+          <li>Launch the game and open the <strong>Geode</strong> button on the main menu.</li>
+          <li>Go to <strong>Download</strong> and search for <em>Snow Particles</em>.</li>
+          <li>Hit install, then restart the game. It'll be snowing.</li>
+        </ol>
+      </div>
+
+      <div class="panel">
+        <span class="panel__tag panel__tag--muted">For developers</span>
+        <h3>Build from source</h3>
+        <p class="panel__note">Requires the Geode CLI and the <code>GEODE_SDK</code> environment variable pointing at your SDK checkout.</p>
+        <div class="code">
+          <button class="code__copy" data-copy="git clone https://github.com/iAndyHD3/SnowParticles
+cd SnowParticles
+geode build">Copy</button>
+<pre><code><span class="c-c"># clone the repo</span>
+<span class="c-k">git</span> clone https://github.com/iAndyHD3/SnowParticles
+<span class="c-k">cd</span> SnowParticles
+
+<span class="c-c"># build + install the .geode package</span>
+<span class="c-k">geode</span> build</code></pre>
+        </div>
+        <p class="panel__note">
+          Prebuilt <code>.geode</code> files are also attached to every
+          <a href="https://github.com/iAndyHD3/SnowParticles/releases" target="_blank" rel="noopener">GitHub release</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── settings ───────────────────────── -->
+  <section class="section" id="settings">
+    <div class="section__head">
+      <h2>Settings</h2>
+      <p>Everything the mod exposes, straight from <code>mod.json</code>.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>Setting</th><th>Type</th><th>Default</th><th>What it does</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>across-layers</code></td>
+            <td><span class="tag tag--bool">bool</span></td>
+            <td><span class="val val--on">true</span></td>
+            <td>Keeps one snowfall alive on the overlay layer so it carries between scenes. <span class="hint">Requires a restart.</span></td>
+          </tr>
+          <tr>
+            <td><code>playlayer</code></td>
+            <td><span class="tag tag--bool">bool</span></td>
+            <td><span class="val val--off">false</span></td>
+            <td>Show snow while you're actually playing a level, instead of hiding it.</td>
+          </tr>
+          <tr>
+            <td><code>particle-count</code></td>
+            <td><span class="tag tag--int">int</span></td>
+            <td><span class="val">700</span></td>
+            <td>How many flakes are on screen at once. Ranges from 250 to 3000.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── playground ───────────────────────── -->
+  <section class="section" id="playground">
+    <div class="section__head">
+      <h2>Try the settings</h2>
+      <p>These controls drive the real snowfall on this page — the same knobs you get in game.</p>
+    </div>
+
+    <div class="playground">
+      <div class="playground__controls">
+        <div class="control">
+          <label for="count">
+            Particle count
+            <output id="countOut">700</output>
+          </label>
+          <input type="range" id="count" min="250" max="3000" step="50" value="700" />
+          <div class="control__scale"><span>250</span><span>3000</span></div>
+        </div>
+
+        <div class="control control--row">
+          <div>
+            <span class="control__title">Snow enabled</span>
+            <span class="control__sub">Toggle the whole effect off</span>
+          </div>
+          <button class="switch is-on" id="toggleSnow" role="switch" aria-checked="true" aria-label="Toggle snow"><span></span></button>
+        </div>
+
+        <div class="control control--row">
+          <div>
+            <span class="control__title">Wind drift</span>
+            <span class="control__sub">Sideways sway of the flakes</span>
+          </div>
+          <button class="switch is-on" id="toggleWind" role="switch" aria-checked="true" aria-label="Toggle wind"><span></span></button>
+        </div>
+
+        <p class="playground__note">
+          Prefers-reduced-motion is respected — if your system asks for less motion, the
+          snow starts paused.
+        </p>
+      </div>
+
+      <div class="playground__preview">
+        <div class="preview-frame">
+          <canvas id="preview"></canvas>
+          <div class="preview-frame__hud">
+            <span class="preview-frame__dot"></span>
+            <span id="fpsOut">live preview</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── changelog ───────────────────────── -->
+  <section class="section" id="changelog">
+    <div class="section__head">
+      <h2>Changelog</h2>
+      <p>Two releases, both of them snow.</p>
+    </div>
+
+    <ol class="timeline">
+      <li>
+        <div class="timeline__marker"></div>
+        <div class="timeline__body">
+          <div class="timeline__head">
+            <h3>v2.0.0</h3>
+            <span class="badge badge--new">Latest</span>
+          </div>
+          <p>Ported to Geode v5 and Geometry Dash 2.2081. Snow now persists across layers via the overlay manager, with the particle count and in-level behaviour exposed as settings.</p>
+          <a class="timeline__link" href="https://github.com/iAndyHD3/SnowParticles/releases/tag/v2.0.0" target="_blank" rel="noopener">View release →</a>
+        </div>
+      </li>
+      <li>
+        <div class="timeline__marker"></div>
+        <div class="timeline__body">
+          <div class="timeline__head"><h3>v1.0.0</h3></div>
+          <p>First release. It snowed.</p>
+          <a class="timeline__link" href="https://github.com/iAndyHD3/SnowParticles/releases/tag/v1.0.0" target="_blank" rel="noopener">View release →</a>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ───────────────────────── cta ───────────────────────── -->
+  <section class="cta">
+    <div class="cta__inner">
+      <h2>Make it snow.</h2>
+      <p>Open Geode, search for Snow Particles, restart. That's the whole thing.</p>
+      <div class="hero__actions hero__actions--center">
+        <a class="btn btn--primary" href="https://geode-sdk.org/mods/iandyhd3.snow_particles" target="_blank" rel="noopener">Geode index page</a>
+        <a class="btn btn--ghost" href="https://github.com/iAndyHD3/SnowParticles/releases" target="_blank" rel="noopener">All releases</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <img src="assets/logo.png" alt="" width="30" height="30" />
+      <div>
+        <strong>Snow Particles</strong>
+        <span>by <a href="https://github.com/iAndyHD3" target="_blank" rel="noopener">iAndyHD3</a></span>
+      </div>
+    </div>
+    <nav class="footer__links">
+      <a href="https://github.com/iAndyHD3/SnowParticles" target="_blank" rel="noopener">Repository</a>
+      <a href="https://github.com/iAndyHD3/SnowParticles/issues" target="_blank" rel="noopener">Report an issue</a>
+      <a href="https://geode-sdk.org/" target="_blank" rel="noopener">Geode SDK</a>
+      <a href="https://docs.geode-sdk.org/" target="_blank" rel="noopener">Geode docs</a>
+    </nav>
+  </div>
+  <p class="footer__fine">Not affiliated with RobTop Games. Geometry Dash is a trademark of RobTop Games AB.</p>
+</footer>
+
+<script src="snow.js"></script>
+</body>
+</html>
